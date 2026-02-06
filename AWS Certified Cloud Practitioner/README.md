@@ -100,3 +100,140 @@ The following policy types, listed in order from most frequently used to less fr
 - Use permissions boundaries to delegate permissions management within an account
 
 The Access key is associated with an IAM accout. The access key will use the **permission** assigned to the IAM account.
+
+## AWS Compute Services
+
+### Amazon Elastic Compute Cloud (EC2)
+
+Create, manage, and monitor virtual servers in the cloud.
+Amazon Elastic Compute Cloud `(Amazon EC2)` offers the broadest and deepest compute platform, with over 600 instance types and a choice of the latest processors, storage, networking, operating systems, and purchase models to help you best match the needs of your workload.
+
+#### EC2 Instance Types
+
+| Instance Type | Description | Use Cases |
+| :--- | :--- | :--- |
+| **General Purpose** | Balanced CPU, memory, and networking resources. | Web servers, code repositories, small databases. |
+| **Compute Optimized** | High-performance processors for compute-intensive tasks. | Batch processing, media transcoding, high-performance web servers. |
+| **Memory Optimized** | Fast performance for workloads that process large data sets in memory. | High-performance databases, real-time big data analytics. |
+| **Accelerated Computing** | Use hardware accelerators (GPUs/FPGAs) for co-processing. | Machine learning, floating-point number calculations, graphics processing. |
+| **Storage Optimized** | Designed for workloads that require high, sequential read/write access to large datasets. | NoSQL databases, data warehousing, distributed file systems. |
+
+| Family | Type | vCPUs | Memory (GB) |
+| :--- | :--- | :--- | :--- |
+| General Propuse | t2.micro | 1 | 1 |
+| Compute Optimized | c5n.large | 2 | 5.25 |
+| Memory Optimized | r5ad.large | 2 | 16 |
+| Storage Optimized | d2.xlarge | 4 | 30.5 |
+| Accelerated Computing | g2.2xlarge | 8 | 15 |
+
+#### EC2 Pricing Models
+
+| Model | Description | Best For |
+| :--- | :--- | :--- |
+| **On-Demand** | Pay by the second for the instances you launch. | Short-term, unpredictable workloads that cannot be interrupted. |
+| **Savings Plans** | Commit to a consistent amount of usage (USD/hr) for 1 or 3 years. | Long-term workloads with flexible instance configurations. |
+| **Reserved Instances** | Commit to a specific instance configuration for 1 or 3 years. | Steady-state usage with predictable performance requirements. |
+| **Spot Instances** | Request unused EC2 capacity at steep discounts (up to 90%). | Fault-tolerant, flexible applications (e.g., batch jobs, background processing). |
+| **Dedicated Hosts** | Physical servers with EC2 instance capacity fully dedicated to your use. | Compliance requirements or server-bound software licenses (BYOL). |
+
+#### EC2 Metadata
+
+- Instance metada is data about your EC2 instance.
+
+`curl http://169.254.169.254/latest/meta-data/`
+
+1. Get instance ID: `curl http://169.254.169.254/latest/meta-data/instance-id`
+2. Get AMI ID `curl http://169.254.169.254/latest/meta-data/ami-id`
+
+```bash
+[ec2-user@ip-172-31-23-222 ~]$ nano script.sh #copy and paste web-server.sh
+[ec2-user@ip-172-31-23-222 ~]$ chmod +x script.sh
+[ec2-user@ip-172-31-23-222 ~]$ ls -la script.sh
+-rwxr-xr-x. 1 ec2-user ec2-user 1172 Feb  5 03:13 script.sh
+[ec2-user@ip-172-31-23-222 ~]$ sudo ./script.sh
+```
+
+Output
+
+![EC2 Metada](assets/ec2-metadata.png)
+
+#### Using Access Keys with EC2
+
+The role is assumed by the EC2 instance.
+Credentials are not stored on the instance, it is not a good practice beacuse is not secure.
+`cat credentials`
+For removing the credentials we can run `rm -rf ~/.aws/*`
+
+![EC2 IAM Role](assets/ec2-iam-role.png)
+
+### AMI (Amazon Machine Image)
+
+An Amazon Machine Image define which operating system we want to use and how it is configured. An AMI defines the configuration of the instance.
+
+### AWS Batch
+
+AWS Batch helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
+
+A job is an unit of work such as a shell script, executable or Docker container image.
+
+Batch launches, manages, and terminates resources as required (EC2, ECS/Fargate).
+
+### AWS LightSail
+
+Amazon Lightsail is the easiest way to get started with Amazon Web Services (AWS) for anyone who needs to build websites or web applications. It includes everything you need to launch your project quickly—instances (virtual private servers), container services, managed databases, content delivery network (CDN) distributions, load balancers, SSD-based block storage, static IP addresses, DNS management of registered domains, and resource snapshots (backups)—for a low, predictable monthly price.
+
+### AWS Elastic Container Service (ECS)
+
+Amazon Elastic Container Service (Amazon ECS) is a highly scalable and fast container management service that makes it easy to run, stop, and manage containers on a cluster.
+
+An ***Amazon Cluster*** is a logical grouping of ***taks*** or ***services***.
+An ECS Task is a running Docker container. An ECS Task is created from a task defintion.
+
+#### ECS Components
+
+- *Cluster*: Logical grouping of tasks of services
+- *Container instance*: EC2 instance running the ECS agent
+- *Task Definition*: Blueprint that describes how a docker container should launch
+- *Task*: A running instance of a task definition
+- *Image*: A Docker image referenced in the task definition
+- *Service*: Defines long running tasks - can control task count with auto scaling and attch an ELB
+
+#### Launch Types - EC2 and Fargate
+
+##### EC2
+
+- You explicity provision EC2 instances
+- You're responsible for managing EC2 instances
+- Charged per running EC2 instance
+- EFS, FSx and EBS integration
+- You handle cluster optimization
+- More granular control over infrastructure
+
+![EC2](assets/ecs-ec2-cluster.png)
+
+##### Fargate
+
+- Fargate automatically provisions resources
+- Fargate provisions and manage compute
+- Charged for running tasks
+- EFS integration only
+- Fargate handles cluster optimization
+- Limited control over infrastructure
+
+![Fargate](assets/ecs-fargate.png)
+
+*Note*: With the fargate launch type the container instance role is replaced with the ***Task Excution Role***.
+
+##### ECS and IAM Roles
+
+![ECS and IAM Roles](assets/ecs-and-iam-roles.png)
+
+### Amazon Elastic Container Registry (ECR)
+
+Amazon Elastic Container Registry (ECR) is a fully managed container registry that makes it easy to store, manage, share, and deploy your container images and artifacts anywhere.
+Docker images can be stored in Amazon ECR
+ECR supports private docker repositories with resources-based permissions using AWS IAM.
+
+### Amazon Fargate
+
+AWS Fargate is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
