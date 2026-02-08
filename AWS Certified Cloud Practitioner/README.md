@@ -377,3 +377,94 @@ Use Cases:
 ### AWS Elastic Disaster Recovery (AWS DRS)
 
 AWS Elastic Disaster Recovery minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
+
+## DNS, Load Balancing, Auto Scaling
+
+### DNS and Amazon Route 53
+
+Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. You can use Route 53 to perform three main functions in any combination: domain registration, DNS routing, and health checking.
+
+![Route 53](assets/route-53.png)
+
+If you choose to use Route 53 for all three functions, be sure to follow the order below:
+
+1. **Register domain names**
+  Your website needs a name, such as example.com. Route 53 lets you register a name for your website or web application, known as a domain name.
+2. **Route internet traffic to the resources for your domain**
+  When a user opens a web browser and enters your domain name (example.com) or subdomain name (acme.example.com) in the address bar, Route 53 helps connect the browser with your website or web application.
+3. **Check the health of your resources**
+  Route 53 sends automated requests over the internet to a resource, such as a web server, to verify that it's reachable, available, and functional. You also can choose to receive notifications when a resource becomes unavailable and choose to route internet traffic away from unhealthy resources.
+
+### Amazon EC2 Auto Scaling
+
+Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Amazon EC2 instances available to handle the load for your application. You create collections of EC2 instances, called Auto Scaling groups. You can specify the minimum number of instances in each Auto Scaling group, and Amazon EC2 Auto Scaling ensures that your group never goes below this size. You can specify the maximum number of instances in each Auto Scaling group, and Amazon EC2 Auto Scaling ensures that your group never goes above this size.
+
+![Auto scaling](assets/auto-scaling.png)
+
+1. Automatic scaling
+
+![Automatic Scaling](assets/automatic-auto-scaling.png)
+
+1. Maintaining Scaling
+
+![Maintaining Scaling](assets/maintaining-auto-scaling.png)
+
+#### Scaling Up vs Scaling Out
+
+- **Scaling UP** means adding resources to the server.
+- **Scaling OUT** means adding more instances of the particular application.
+
+![Scaling Up vs Scaling Out](assets/scale-up-out.png)
+
+Amazon EC2 auto scaling is horizontal (scales out).
+
+#### Types of Auto Scaling
+
+- **Manual** - Make changes to ASG size manually.
+- **Dynamic** - Automatically scales based on demand.
+- **Predictive** - Uses machine learning to predict demand.
+- **Scheduled** - Scales based on schedule.
+
+#### Create auto scaling groups
+
+1. EC2 - launch templates
+2. EC2 - Auto scaling - Use launch template
+
+#### Scaling Policies
+
+- **Target Tracking** - Attempts to keep the group at or close to the metric
+- **Step Scaling** - Adjust group based on a metric - adjustments vary based on the size of the alarm breach
+- **Simple Scaling** - Adjust group size based on a metric
+- **Scheduled Scaling** - Adjust the group size at a specific time
+
+### Amazon Elastic Load Balancer (ELB)
+
+Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones. It monitors the health of its registered targets, and routes traffic only to the healthy targets. Elastic Load Balancing scales your load balancer capacity automatically in response to changes in incoming traffic.
+
+![ELB](assets/aws-elb.png)
+
+#### Types of Elastic Load Balancer
+
+- **Application Load Balancers**
+  - Operates at the request level
+  - Routes based on the content of request (L7)
+  - Supports path-based routing, hosted-based routing, query string parameter-based routing, and source IP address-based routing
+  - Support instances, IP addresses, Lambda functions and container as targets
+- **Network Load Balancers**
+  - Operates at the connection level
+  - Routes connection based on IP protocol data (L4)
+  - Offer ultra high performance, low latency and TLS offloading at scale
+  - Can have a static IP / Elastic IP
+  - Support UDP and static addresses as targets
+- **Gateway Load Balancers**
+  - Used in front virtual appliances sych as firewalls, ISD/IPS, and deep packet inspection systems
+  - Operate at (L3) - listens for all packets on all ports
+  - Forwards traffic to the Target Group specified in the listener rules
+  - Exchanges traffic with appliances using the GENEVE protocol on port 6081
+
+#### Create Load Balancing
+
+1. Create target group -> to contain de instance
+2. Specify group details (Instances, IP address, Lambda, Application Load Balancer)
+3. Create Load Balancer
+4. Select the auto scaling group, Edit load balancer and select the load balancer target groups
