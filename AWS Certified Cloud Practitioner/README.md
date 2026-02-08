@@ -237,3 +237,143 @@ ECR supports private docker repositories with resources-based permissions using 
 ### Amazon Fargate
 
 AWS Fargate is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
+
+## AWS Storage Services
+
+### Amazon Elastic Block Store (EBS)
+
+Amazon Elastic Block Store (Amazon EBS) provides scalable, high-performance block storage resources that can be used with Amazon Elastic Compute Cloud (Amazon EC2) instances. With Amazon Elastic Block Store, you can create and manage the following block storage resources:
+
+![EBS](assets/ebs.png)
+
+#### Amazon EBS volumes
+
+These are storage volumes that you attach to Amazon EC2 instances. After you attach a volume to an instance, you can use it in the same way you would use a local hard drive attached (HDD or SSD) to a computer, for example to store files or to install applications.
+
+##### IOPS
+
+The requested number of I/O operations per second that the volume can support. It is applicable to Provisioned IOPS SSD (io1) and General Purpose SSD (gp2 and gp3) volumes only.
+
+Check the volumes inside EC2 instance.
+
+```bash
+[ec2-user@ip-172-31-93-75 ~]$ sudo lsblk -e7
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0   8G  0 disk
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part
+└─xvda128 259:1    0  10M  0 part /boot/efi
+```
+
+After attaching volume
+
+```bash
+[ec2-user@ip-172-31-93-75 ~]$ sudo lsblk -e7
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0   8G  0 disk
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part
+└─xvda128 259:1    0  10M  0 part /boot/efi
+xvdf      202:80   0  10G  0 disk #attached volume
+```
+
+#### Amazon EBS snapshots
+
+These are point-in-time backups of Amazon EBS volumes that persist independently from the volume itself. You can create snapshots to back up the data on your Amazon EBS volumes. You can then restore new volumes from those snapshots at any time. Snapshots are a regional contruct beacuse they're in `S3`.
+
+![EBS](assets/ebs-snapshot.png)
+
+- **Amazon Data Lifecycle Manager (DLM)**
+  - DLM automates the creation, retention, and deletion of EBS snapshots and EBS-backed AMIs.
+  - DLM helps with the following:
+    - Protects valuable data by enforcing a regular backup schedule
+    - Create standardized AMIs that can be refreshed at regular intervals
+    - Retain backups as required by auditors or internal compliance
+    - Reduce storage costs by deleting outdated backups
+    - Create disaster recovery backup policies that back up data to isolated accounts
+
+### Amazon Elastic File System (EFS)
+
+Amazon Elastic File System (Amazon EFS) provides serverless, fully elastic file storage so that you can share file data without provisioning or managing storage capacity and performance. Amazon EFS is built to scale on demand to petabytes without disrupting applications, growing and shrinking automatically as you add and remove files. Because Amazon EFS has a simple web services interface, you can create and configure file systems quickly and easily.
+Uses the NFS protocol.
+
+#### EFS file system types
+
+Amazon EFS offers Regional and One Zone file system types.
+
+- **Regional** – Regional file systems (recommended) store data redundantly across multiple geographically separated Availability Zones within the same AWS Region.
+- **One Zone** – One Zone file systems store data within a single Availability Zone. Storing data in a single Availability Zone provides continuous availability to the data. In the unlikely case of the loss or damage to all or part of the Availability Zone, however, data that is stored in these types of file systems might be lost.
+
+![EFS file system types](assets/efs-file-systems.png)
+
+We can replicate EFS in another region for example for disaster recovery purposes. Mount pionts can be created but the file system is read-only.
+
+### Amazon simple storage service (S3)
+
+Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can use Amazon S3 to store and protect any amount of data for a range of use cases, such as data lakes, websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics. Amazon S3 provides management features so that you can optimize, organize, and configure access to your data to meet your specific business, organizational, and compliance requirements.
+
+A `bucket` is a container for objects. The name of the bucket has to be unique across AWS.
+An `object` is a file you upload (pdf, word, png, mp4...). You can store millions of objects in a bucket. An object consist of:
+
+- Key (name of the object)
+- Version ID
+- Value
+- Metadata
+- Subresources
+- Access control information
+
+Accessing objects in a bucket:
+
+- <https://bucket.s3.aws-region.amazonaws.com/object-key>
+- <https://s3.aws-region.amazonaws.com/bucket-name/object-key>
+
+The HTTP protocol is used with a REST API (eg. GET, POST, PUT, DELETE).
+
+#### Amazon S3 Storage Classes
+
+Amazon S3 offers a range of storage classes designed for different use cases. For example, you can store mission-critical production data in S3 Standard or S3 Express One Zone for frequent access, save costs by storing infrequently accessed data in S3 Standard-IA or S3 One Zone-IA, and archive data at the lowest costs in S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, and S3 Glacier Deep Archive.
+
+![Storage Classes](assets/s3-storage-classes.png)
+
+#### Amazon S3 Versioning
+
+- Versioning is a means of keeping multiples variants of an objects in the same bucket
+- Use. versioning to preserve, retrieve ans restore every version of every object stored in a bucket
+- Versioning-enabled buckets enable you to recover objects from accidental deletion or overwrite
+
+#### Amazon S3 Replication
+
+Cross-Region Replication
+![S3 Cross-Region Replication](assets/s3-crr.png)
+
+Same-Region Replication
+![S3 Same-Region Replication](assets/s3-srr.png)
+
+#### Amazon S3 Lifecycle Management
+
+There are two types of actions:
+
+- **Transition actions** - Define when objects transition to another storage class. [Supported transitions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html)
+- **Expiration actions** - Define when objects expire (deleted)
+
+#### Amazon S3 Glacier
+
+Amazon S3 Glacier (S3 Glacier) is a secure and durable service for low-cost data archiving and long-term backup.
+
+### Amazon FSx
+
+Amazon FSx makes it easy and cost effective to launch, run, and scale feature-rich, high-performance file systems in the cloud. It supports a wide range of workloads with its reliability, security, scalability, and broad set of capabilities. With Amazon FSx, you can choose between four widely-used file systems: Lustre, NetApp ONTAP, OpenZFS, and Windows File Server. Amazon File Cache is a high-speed cache on AWS that makes it easier to process file data, regardless of where the data is stored.
+
+### AWS Storage Gateway
+
+AWS Storage Gateway is a service that we can use to connect our on-premises applications into cloud storage for a few different use cases. It is known as a hybrid cloud service because it's connecting you from your on-premises infrastructure.
+Use Cases:
+
+- Moving backups to the cloud
+- Using on-premises file shares backed by cloud storage
+- Low latency access to data in AWS for on-premises applications
+- Disaster recovery
+
+### AWS Elastic Disaster Recovery (AWS DRS)
+
+AWS Elastic Disaster Recovery minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
