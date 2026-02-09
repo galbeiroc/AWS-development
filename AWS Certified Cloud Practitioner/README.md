@@ -468,3 +468,47 @@ Elastic Load Balancing automatically distributes your incoming traffic across mu
 2. Specify group details (Instances, IP address, Lambda, Application Load Balancer)
 3. Create Load Balancer
 4. Select the auto scaling group, Edit load balancer and select the load balancer target groups
+
+## Application Service
+
+### AWS Lambda
+
+With AWS Lambda, you can run code without provisioning or managing servers. You pay only for the compute time that you consume—there's no charge when your code isn't running. You can run code for virtually any type of application or backend service—all with zero administration. Just upload your code and Lambda takes care of everything required to run and scale your code with high availability.
+
+### Amazon Simple Queue Services (SQS)
+
+Amazon Simple Queue Service (Amazon SQS) is a fully managed message queuing service that makes it easy to decouple and scale microservices, distributed systems, and serverless applications. Amazon SQS moves data between distributed application components and helps you decouple these components.
+
+### Amazon Simple Notification Service (SNS)
+
+Amazon Simple Notification Service (Amazon SNS) is a web service that enables applications, end-users, and devices to instantly send and receive notifications from the cloud.
+
+### Amazon EventBridge
+
+Amazon EventBridge is a serverless event bus service that makes it easy to connect your applications with data from a variety of sources. EventBridge delivers a stream of real-time data from your own applications, software-as-a-service (SaaS) applications, and AWS services and routes that data to targets such as AWS Lambda. You can set up routing rules to determine where to send your data to build application architectures that react in real time to all of your data sources. EventBridge enables you to build event-driven architectures that are loosely coupled and distributed.
+
+### AWS Step Functions
+
+AWS Step Functions makes it easy to coordinate the components of distributed applications as a series of steps in a visual workflow. You can quickly build and run state machines to execute the steps of your application in a reliable and scalable fashion.
+
+### Amazon MQ
+
+Amazon MQ is a managed message broker service that makes it easy to set up and operate message brokers in the cloud. Amazon MQ provides interoperability with your existing applications and services. Amazon MQ works with your existing applications and services without the need to manage, operate, or maintain your own messaging system.
+
+#### Comparison of Application Integration Services
+
+| Service | Type | Key Feature | Example use cases |
+| :--- | :--- | :--- | :--- |
+| **Amazon SQS** | Queue | Decouples applications using a pull-based buffer. | Building distributed / decoupled applications |
+| **Amazon SNS** | Pub/Sub | Push-based notifications to many subscribers (Topic). | Send email notification when CloudWatch alarms is triggered |
+| **Amazon EventBridge** | Event Bus | Routes events from AWS, SaaS, or custom apps. | Create event driven applications |
+| **AWS Step Functions** | Workflow | Orchestrates multiple services into a visual workflow. | Order processing workflows |
+| **Amazon MQ** | Managed Broker | Compatibility for existing apps (ActiveMQ/RabbitMQ). | Need a message queue that supports industry standard APIs protocols |
+
+### Amazon CloudWatch
+
+Amazon CloudWatch provides a reliable, scalable, and flexible monitoring solution that you can start using within minutes. You no longer need to set up, manage, and scale your own monitoring systems and infrastructure.
+
+### Amazon API Gateway
+
+Amazon API Gateway enables you to create and deploy your own REST and WebSocket APIs at any scale. You can create robust, secure, and scalable APIs that access Amazon Web Services or other web services, as well as data that’s stored in the AWS Cloud. You can create APIs to use in your own client applications, or you can make your APIs available to third-party app developers.
