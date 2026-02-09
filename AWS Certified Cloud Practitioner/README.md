@@ -512,3 +512,95 @@ Amazon CloudWatch provides a reliable, scalable, and flexible monitoring solutio
 ### Amazon API Gateway
 
 Amazon API Gateway enables you to create and deploy your own REST and WebSocket APIs at any scale. You can create robust, secure, and scalable APIs that access Amazon Web Services or other web services, as well as data that’s stored in the AWS Cloud. You can create APIs to use in your own client applications, or you can make your APIs available to third-party app developers.
+
+## Amazon VPC - Networking - Hybrid
+
+### Amazon Virtual Private Cloud (VPC)
+
+Amazon Virtual Private Cloud (Amazon VPC) enables you to provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you've defined.
+
+A `VPC` is a logically isolated portion of the AWS Cloud within a region. You can create subnets and those are actually mapped to availability zones.
+You can launch EC2 instances into your VPC subnets.
+An Internet Gateway is used to connect to the Internet.
+The route table is used to configure the VPC router.
+You can create multiples VPCS within each region. Each VPC has a different block of Ip address.
+
+![VPC](assets/aws-vpc.png)
+
+#### CIDR - Classes Inter-Domain Routing
+
+Stand for Classes Inter-Domain Routing. Each subnet has a block of IP address from the CIDR block.
+VPC has a CIDR `10.0.0.0/16`.
+Public subnet has a CIDR  `10.0.1.0/24`
+Private subnet has a CIDR `10.0.2.0/24`
+
+#### Security Groups and Network ACLs
+
+- **Security Group**
+  - Operates at the instance level
+  - Support allow rules only
+  - Stateful
+  - Evaluates all rules
+  - Applies to an instance only if associated with group
+- **Network ACL**
+  - Operates at the subnet level
+  - Support allow and deny rules
+  - Stateless
+  - Process rules in order
+  - Automatically applies to all instances in the subnets its associated with
+
+#### Public, Private and Elastic Addresses
+
+- Public
+  - Lost when the instance is stopped
+  - Used in Public Subnets
+  - No charge
+  - Associated with a private IP address on the instance
+  - Cannot be moved between instances
+- Private
+  - Retained when the instance is stopped
+  - Used in Public and Private Subnets
+- Elastic
+  - Static public IP address
+  - Your are charged if not used
+  - Associated with a private IP address on the instance
+  - Can be moved between instances and Elastic Network Adapters
+
+#### NAT Gateway and NAT Instances - NAT (Network Address Translation)
+
+A *NAT gateway* is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC but external services can't initiate a connection with those instances.
+The NAT Gateway is created in the public subnet.
+
+![NAT Gateway](assets/nat-gateway.png)
+
+*NAT Instances* is the old way of doing thing before the actual NAT Gateways even existed. You can use a NAT instance to allow resources in a private subnet to communicate with destinations outside the virtual private cloud (VPC), such as the internet or an on-premises network.
+The route table associated with the private subnet sends internet traffic from the instances in the private subnet to the NAT instance in the public subnet. The NAT instance then sends the traffic to the internet gateway.
+
+![NAT Instances](assets/nat-instance.png)
+
+### Amazon VPC Peering
+
+A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses. Instances in either VPC can communicate with each other as if they are within the same network. You can create a VPC peering connection between your own VPCs, or with a VPC in another AWS account. The VPCs can be in different Regions (also known as an inter-Region VPC peering connection).
+Cannot overlap their CIDR. VPC peering connections are not transitive, full mesh required. The connection has to be direct.
+
+![VPC Peering](assets/aws-vpc-peering.png)
+
+### Amazon VPN (Site-to-Site VPN)
+
+AWS Virtual Private Network (Site-to-Site VPN) establishes a secure and private tunnel from your network or device to the AWS Cloud. You can extend your existing on-premises network into a VPC, or connect to other AWS resources from a client. Site-to-Site VPN offers two types of private connectivity that feature the high availability and robust security necessary for your data.
+
+By default, an instance that you launch within an Amazon VPC can't communicate with a local (AWS Cloud) network and a remote device — for example, this might be a site or an on-premises device. You can enable access to your remote devices from your VPC by creating an AWS Site-to-Site VPN (Site-to-Site VPN) connection, and configuring routing to pass traffic through the connection.
+Use the public Internet.
+
+### Amazon Direct Connect
+
+Direct Connect establishes a dedicated network connection between your on-premises network and AWS. With this connection in place, you can create virtual interfaces directly to the AWS Cloud, bypassing your internet service provider. This can provide a more consistent network experience. It is more expensive than having a VPN. If you have enough data that you're transferring it can be cost effective as well as being high performance.
+Direct connect is Private that means you get consistent network experience, whereas a VPN is Public.
+
+### AWS Transit Gateway
+
+Transit Gateway is a network transit hub that interconnects VPCs and on-premises networks. As your cloud infrastructure expands globally, inter-Region peering connects transit gateways together using the AWS Global Infrastructure. All network traffic between AWS data centers is automatically encrypted at the physical layer.
+
+### AWS Outposts
+
+AWS Outposts is a fully managed service that extends AWS infrastructure, services, APIs, and tools to customer premises. By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs.
