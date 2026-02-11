@@ -604,3 +604,110 @@ Transit Gateway is a network transit hub that interconnects VPCs and on-premises
 ### AWS Outposts
 
 AWS Outposts is a fully managed service that extends AWS infrastructure, services, APIs, and tools to customer premises. By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs.
+
+## Deployment and Automation
+
+### Amazon CloudFront
+
+Amazon CloudFront is a content delivery network (CDN) service. Amazon CloudFront speeds up distribution of your static and dynamic web content, such as .html, .css, .php, image, and media files. When users request your content, CloudFront delivers it through a worldwide network of edge locations that provide low latency and high performance.
+CDNs improve performance by caching content closer to users.
+
+- Uses HTTPs and intrgrates with AWS ACM (Certificate Manager) for managing SSL/TLS certificates
+- Integrates with AWS Shield and AWS WAF (Web Application Firewall) for additional security protection
+- Content can also protected with features including signed cookies, signed URLs, and origin access identity (OAI)
+
+### AWS Global Accelerator
+
+AWS Global Accelerator is a service in which you create accelerators to improve the performance of your applications for local and global users. Depending on the type of accelerator you choose.
+Global Accelerator is a global service that supports endpoints in multiple AWS Regions. To determine if Global Accelerator or other services are currently supported in a specific AWS Region.
+
+- Network Layer: Operates at the network layer (Layer 4 of the OSI model)
+- IP Address: Provides static IP addresses as a fixed entry point your applications
+- Performance: Improves performance by leveraging the AWS Global Network Backbone, reducing internet latency and jitter
+- Health Checks: Perform health checks and automatically reroutes traffic to healthy endpoints
+- Application Protocols: Supports TCP and UDP traffic
+
+### IaC with AWS CloudFormation
+
+With Infrastructure as Code (IaC), you can automate the deployment and management of your AWS resources, including serverless applications. IaC allows you to define your infrastructure using code, making it easier to version, share, and replicate your deployments. This approach helps you:
+
+- Speed up your development cycle
+- Simplify configuration management
+- Improve reliability and consistency of your deployments
+
+AWS CloudFormation enables you to create and provision AWS infrastructure deployments predictably and repeatedly. It helps you leverage AWS products such as Amazon EC2, Amazon Elastic Block Store, Amazon SNS, Elastic Load Balancing, and Auto Scaling to build highly reliable, highly scalable, cost-effective applications in the cloud without worrying about creating and configuring the underlying AWS infrastructure. AWS CloudFormation enables you to use a template file to create and delete a collection of resources together as a single unit (a stack).
+Infrastructure patterns are defined in template file (`json`, `yaml`) using code.
+
+| Component | Description |
+| :--- | :--- |
+| Templates | The JSON or YAML text file that contains the instructions for building out the AWS enviroment |
+| Stack | The entire enviroment described by the template and created, updated, and deleted as single unit |
+| StackSets | AWS CloudFormation StackSets extends the functionality of stacks by enabling you to create, update, or delete stacks accross multiples accounts and regions with single operation |
+| Change Sets | A summary of proposed changes to your stack that will allow you to see how these changes might impact your existing resources before implementing them |
+
+### AWS Cloud Development Kit (CDK)
+
+The AWS Cloud Development Kit (AWS CDK) is an open-source software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.
+Enables you to model application infrastructure using TypeScript, Python, Java and .NET
+
+### PaaS with Elastic Beanstalk
+
+With Elastic Beanstalk you can deploy web applications into the AWS Cloud on a variety of supported platforms. You build and deploy your applications. Elastic Beanstalk provisions Amazon EC2 instances, configures load balancing, sets up health monitoring, and dynamically scales your environment.
+
+In addition to web server environments, Elastic Beanstalk also provides worker environments which you can use to process messages from an Amazon SQS queue, useful for asynchronous or long-running tasks.
+
+- Supports many application platforms including:
+  - Java, .NET, Nodejs, PHP, Ruby, Python, Go and Docker
+- Use core AWS services including EC2, ECS, Auto Scaling and Elastic Load Balancing
+- Elastic Beanstalk provides a UI to monitor and manage the health of application
+- Managed platform updates deploy the latest version of software and patches
+- Versions can be applied to any environment
+
+#### Web Servers and Workers
+
+- **Web Servers** are standard applications that listen for and then process HTTP requests, typically over port 80
+- **Workers** are specialized applications that have a background processing task that listening for messages from an Amazon SQS queue. Should be used for long-running tasks
+
+### AWS Developer Tools (Code*)
+
+The Developer tools are used in continous integration and continuos delivery.
+
+#### Continuous Integration
+
+##### AWS CodeCommit
+
+AWS CodeCommit is a fully managed source control service that makes it easy for companies to host secure and highly scalable private Git repositories. Code repository similar to Github.
+
+##### AWS CodeBuild
+
+AWS CodeBuild is a fully managed build service that compiles source code, runs tests, and produces software packages that are ready to deploy. With CodeBuild, you don’t need to provision, manage, and scale your own build servers. CodeBuild scales continuously and processes multiple builds concurrently, so your builds are not left waiting in a queue.
+
+#### Continuous Delivery
+
+##### AWS CodeDeploy
+
+AWS CodeDeploy is a service that automates code deployments to any instance, including EC2 instances and instances running on premises. CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications. You can use CodeDeploy to automate software deployments, eliminating the need for error-prone manual operations. The service scales with your infrastructure so you can easily deploy to one instance or thousands.
+
+##### AWS CodePipeline
+
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This enables you to rapidly and reliably deliver features and updates. You can easily integrate CodePipeline with third-party services such as GitHub or with your own custom plugin. With AWS CodePipeline, you only pay for what you use. There are no upfront fees or long-term commitments.
+It connects these AWS developer tools together and it forms a pipeline.
+
+### AWS Cloud9
+
+AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. AWS Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects.
+
+### AWS AppConfig
+
+AWS AppConfig feature flags and dynamic configurations help software builders quickly and securely adjust application behavior in production environments without full code deployments. AWS AppConfig speeds up software release frequency, improves application resiliency, and helps you address emergent issues more quickly.
+
+### AWS X-Ray
+
+AWS X-Ray makes it easy for developers to analyze the behavior of their distributed applications by providing request tracing, exception collection, and profiling capabilities.
+AWS X-Ray is a service you can use to debug your distributed applications.
+
+- AWS X-Ray supports applications running on:
+  - Amazon EC2
+  - Amazon ECS
+  - AWS Lambda
+  - AWS Beanstalk
