@@ -711,3 +711,126 @@ AWS X-Ray is a service you can use to debug your distributed applications.
   - Amazon ECS
   - AWS Lambda
   - AWS Beanstalk
+
+## Databases and Analitics
+
+Relational Databases: Organized by tables, rows, and columns. Rigid schema SQL. Typically scaled vertically.
+
+Non-Relational Databases: Flexible schema NoSQL - data stored in key-value pair, columns, documents or graphs. Scaled horizontally.
+
+### Amazon Relational Database Service (RDS)
+
+Amazon Relational Database Service (Amazon RDS) is a web service that makes it easier to set up, operate, and scale a relational database in the cloud. It provides cost-efficient, resizeable capacity for an industry-standard relational database and manages common database administration tasks. Amazon Aurora is a fully managed relational database engine that's built for the cloud and compatible with MySQL and PostgreSQL. Amazon Aurora is part of Amazon RDS.
+
+### Amazon Aurora
+
+Amazon Aurora (Aurora) is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
+Aurora is up to five times faster than standard MySQL databases and three times faster than standard PostgreSQL databases.
+
+### Amazon Aurora DB clusters
+
+An Amazon Aurora DB cluster consists of one or more DB instances and a cluster volume that manages the data for those DB instances. An Aurora cluster volume is a virtual database storage volume that spans multiple Availability Zones, with each Availability Zone having a copy of the DB cluster data. Two types of DB instances make up an Aurora DB cluster:
+
+- **Primary (writer) DB instance** – Supports read and write operations, and performs all of the data modifications to the cluster volume. Each Aurora DB cluster has one primary DB instance.
+- **Aurora Replica (reader DB instance)** – Connects to the same storage volume as the primary DB instance but supports only read operations. Each Aurora DB cluster can have up to 15 Aurora Replicas in addition to the primary DB instance. Maintain high availability by locating Aurora Replicas in separate Availability Zones. Aurora automatically fails over to an Aurora Replica in case the primary DB instance becomes unavailable. You can specify the failover priority for Aurora Replicas. Aurora Replicas can also offload read workloads from the primary DB instance.
+
+#### How Amazon Aurora works with Amazon RDS
+
+The following points illustrate how Amazon Aurora relates to the standard MySQL and PostgreSQL engines available in Amazon RDS:
+
+- You choose Aurora MySQL or Aurora PostgreSQL as the DB engine option when setting up new database servers through Amazon RDS.
+- Aurora takes advantage of the familiar Amazon Relational Database Service (Amazon RDS) features for management and administration. Aurora uses the Amazon RDS AWS Management Console interface, AWS CLI commands, and API operations to handle routine database tasks such as provisioning, patching, backup, recovery, failure detection, and repair.
+- Aurora management operations typically involve entire clusters of database servers that are synchronized through replication, instead of individual database instances. The automatic clustering, replication, and storage allocation make it simple and cost-effective to set up, operate, and scale your largest MySQL and PostgreSQL deployments.
+- You can bring data from Amazon RDS for MySQL and Amazon RDS for PostgreSQL into Aurora by creating and restoring snapshots, or by setting up one-way replication.
+
+### Amazon DynamoDB
+
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. You can use Amazon DynamoDB to create a database table that can store and retrieve any amount of data, and serve any level of request traffic. Amazon DynamoDB automatically spreads the data and traffic for the table over a sufficient number of servers to handle the request capacity specified by the customer and the amount of data stored, while maintaining consistent and fast performance.
+DynamoDB is a fully serveless services. Highly available 99.99%
+
+- Provisisoned Throughput: You can choose provisioned capacity paying for the amount of reads and writes per second that yuo allocate for your table.
+- On-Demand Capacity: You pay for the read and write requests your application performs on your tables without managing capacity planing.
+
+### Amazon RedShhift
+
+Amazon Redshift is a fast, fully managed, petabyte-scale data warehouse service that makes it simple and cost-effective to efficiently analyze all your data using your existing business intelligence tools. It is optimized for datasets ranging from a few hundred gigabytes to a petabyte or more and costs less than $1,000 per terabyte per year, a tenth the cost of most traditional data warehousing solutions.
+Data can be analized with BI tools such as QuickSight using SQL.
+RedShift is a relational database that is used for Online Analytical Processing (OLAP) use cases.
+RedShift uses Amazon EC2 instances, so you must choose an instance family/type
+
+### Amazon Elastic Map Reduce (EMR)
+
+Amazon EMR is a web service that makes it easy to process vast amounts of data efficiently using (Apache Hadoop Apache Spark) and services offered by Amazon Web Services.
+Amazon EMR, which was previously called Amazon Elastic MapReduce, is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark, on AWS to process and analyze vast amounts of data.
+Used for processing data for analytics and business intelligence.
+Can also be used for transforming and moving large amounts of data.
+Performs extract, tranform, and load (ETL) tasks.
+
+### Amazon ElastiCache
+
+Amazon ElastiCache makes it easy to set up, manage, and scale distributed in-memory cache environments in the AWS Cloud. It provides a high-performance, resizable, and cost-effective in-memory cache, while removing the complexity associated with deploying and managing a distributed cache environment.
+ElastiCache works with the key-value, Redis OSS, and Memcached engines.
+Can be put in front of databases such as RDS and DynamoDB.
+ElastiCache nodes run on Amazon EC2 instances, so you must choose an instance family/type
+
+### Amazon MemoryDB for Redis
+
+Amazon MemoryDB is a fully managed, Valkey- and Redis OSS-compatible, in-memory database. It delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures.
+
+#### MemoryDB for Redis vs ElastiCache
+
+- Use ElastiCache for caching DB queries
+- Use MemoryDB for a full DB solutions and cache
+- MemoryDB offers higher performance with lower latency
+- With ElastiCache there can be some inconsistency and latency
+- Memory offers strong consistency for primary nodes and eventual consistency for replicas nodes
+
+### Amazon Athena and AWS Glue
+
+Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to setup or manage, and you pay only for the queries you run. To get started, simply point to your data in S3, define the schema, and start querying using standard SQL.
+Athena can query data in CVS, TVS, JSON, Parquet and ORC formats.
+
+#### Optimizing Athena for Performance
+
+- Partition your data
+- Bucket your data - bucket the data within a single partition
+- Use Compression - AWS recommend using aither Apache Parquet or Apache ORC
+- Optimaze file sizes
+- Optimize columnar data storage generation
+- Optimize ORDER By and Optmize GROUP By
+- Use approximate functions
+- Only include the columns you need
+
+#### Amazon Glue
+
+AWS Glue is a scalable, serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development.
+Amazon Glue is  used as a metada catalog.
+AWS Glue runs the ETL jobs on a fully managed, scale-out Apache Spark environment.
+AWS Glue works with data lages (e.g data on S3), data warehouses (including RedShift), and data stores (including RDS or EC2 databases)
+
+### Amazon Kinesis
+
+Amazon Kinesis Data Streams to collect and process large streams of data records in real time. You can create data-processing applications, known as Kinesis Data Streams applications. A typical Kinesis Data Streams application reads data from a data stream as data records.
+
+### Amazon OpenSearch Service
+
+Amazon OpenSearch Service is a managed service that makes it easy to deploy, operate, and scale OpenSearch clusters in the AWS Cloud. An OpenSearch Service domain is synonymous with an OpenSearch cluster. Domains are clusters with the settings, instance types, instance counts, and storage resources that you specify. Amazon OpenSearch Service supports OpenSearch and legacy Elasticsearch OSS.
+OpenSearch is a fully open-source search and analytics engine for use cases such as log analytics, real-time application monitoring, and clickstream analysis. For more information, see the [OpenSearch documentation](https://opensearch.org/docs/)
+
+- Distribuited search and analytics suite
+- Based on the popular open source Elasticsearch
+- Support queries using SQL syntax
+- Integrates with open-source tools
+- Scale by adding or removing instances (EC2)
+- Availability in up to three AZs
+- Backup using snapshots
+- Encryption at-rest and in-transit
+
+### AWS Data Exchange
+
+AWS Data Exchange is a service that makes it easy for customers to find, subscribe to, and use third-party data (Apptopia, SimilarWeb, Techsalerator) in the AWS Cloud.
+
+### Amazon MSK
+
+Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that makes it easy for you to build and run applications that use Apache Kafka to process streaming data.
+Real time data.
