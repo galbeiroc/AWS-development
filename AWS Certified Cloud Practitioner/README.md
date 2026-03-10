@@ -817,6 +817,14 @@ Amazon Kinesis Data Streams to collect and process large streams of data records
 Amazon OpenSearch Service is a managed service that makes it easy to deploy, operate, and scale OpenSearch clusters in the AWS Cloud. An OpenSearch Service domain is synonymous with an OpenSearch cluster. Domains are clusters with the settings, instance types, instance counts, and storage resources that you specify. Amazon OpenSearch Service supports OpenSearch and legacy Elasticsearch OSS.
 OpenSearch is a fully open-source search and analytics engine for use cases such as log analytics, real-time application monitoring, and clickstream analysis. For more information, see the [OpenSearch documentation](https://opensearch.org/docs/)
 
+#### OpenSearch Best Practices
+
+- Deploy OpenSearch data instances across three Availability Zones (AZs)
+- Provision instances in multiples of three for equal distribution across AZs
+- If three AZs are not available use two AZs with equal numbers of instances
+- Create the domain within an Amazon VPC
+- For sensitive data enable node-to-node encryption and encription at rest
+
 - Distribuited search and analytics suite
 - Based on the popular open source Elasticsearch
 - Support queries using SQL syntax
@@ -834,3 +842,19 @@ AWS Data Exchange is a service that makes it easy for customers to find, subscri
 
 Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that makes it easy for you to build and run applications that use Apache Kafka to process streaming data.
 Real time data.
+
+### AWS Data Pipeline
+
+Processes and moves data between different AWS compute and storage services. Save results to services including S3, RDS, DynamoDB and EMR.
+
+### Amazon QuickSight
+
+Business Inteligence (BI) Service. Create and publish interactive BI Dashboards for machine learning-powered insights.
+
+### Amazon Neptune
+
+Fully managed graph database service
+
+### Amazon DocumentDB
+
+Amazon DocumentDB is a fully managed NoSQL database service. Support MongoDB worloads
