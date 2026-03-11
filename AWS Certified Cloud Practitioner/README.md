@@ -858,3 +858,201 @@ Fully managed graph database service
 ### Amazon DocumentDB
 
 Amazon DocumentDB is a fully managed NoSQL database service. Support MongoDB worloads
+
+## AWS Cloud Security and Identity
+
+### Identity Providers and Federation
+
+#### IAM (Identity and Access Management)
+
+IAM identity server is the succesor to AWS Single Sign-On (SSO). Enables centralized permissions management and SSO.
+
+#### Amazon Cognito
+
+Amazon Cognito handles user authentication and authorization for your web and mobile apps. With user pools, you can easily and securely add sign-up and sign-in functionality to your apps. With identity pools (federated identities), your apps can get temporary credentials that grant users access to specific AWS resources, whether the users are anonymous or are signed in.
+
+### AWS Directory Service (DS)
+
+#### AWS Managed Microsoft Active Directory
+
+Managed implementation of Microsoft Active Directory (AD) running on Windows Server 2012 R2.
+Best choice if you have more than 5000 users and/or need a trust relationship set up.
+You can setup trust relationship to extend authentication from on-premises Active-Directories in to AWS cloud.
+On-Premise users and groups can access resources in either domain using SSO.
+Can be used as a standlone AD in the AWS cloud.
+
+#### AD Connector
+
+This is a self managed Mircrosoft Active Directory in our data center.
+AD Connector is a directory gateway for redirecting directory requests to your on-premise Active Directory AD.
+AD Connector eliminates the need for directory synchorinzation and the cost and complexity of hosting a federation infrastructure.
+AD connects your existing on-premise AD to AWS.
+Best choice when you want to use an existing Active Directory in the AWS cloud.
+
+#### Simple AD
+
+Low scale, low cost, AD implementation based on Samba.
+
+### Protecting Secrects
+
+It-s often useful to utilize a service for protecting our secrets, things like our passwords, configuration parameters or connection strings for databases.
+
+#### Systems Manager Parameter Store
+
+Parameter Store, a tool in AWS Systems Manager, provides secure, hierarchical storage for configuration data management and secrets management. You can store data such as passwords, database strings, Amazon Machine Image (AMI) IDs, and license codes as parameter values. You can store values as plain text or encrypted data. You can reference Systems Manager parameters in your scripts, commands, SSM documents, and configuration and automation workflows by using the unique name that you specified when you created the parameter.
+
+- You can store data such as passwords, database strings, and license codes as parameter values
+- You can store values as plaintext (unencrypted data) or ciphertext (encrypted data)
+- You can then reference values by using the unique name that you specified when you created the parameter
+
+#### AWS Secrets Manager
+
+AWS Secrets Manager helps you to securely encrypt, store, and retrieve credentials for your databases and other services. Instead of hardcoding credentials in your apps, you can make calls to Secrets Manager to retrieve your credentials whenever needed. Secrets Manager helps you protect access to your IT resources and data by enabling you to rotate and manage access to your secrets.
+With Secrets Manager, you can configure an automatic rotation schedule for your secrets. This enables you to replace long-term secrets with short-term ones, significantly reducing the risk of compromise.
+
+### Encryption
+
+- Encryption in Transit: Data is protected by SSL/TLS in transit. While is moving across the network.
+- Encryption at Rest: Data is protected when it's stored. (Data Encryption Key)
+
+#### Asymmetric Encryption
+
+Asymmetric encryption is also known as public key cryptography.
+Messages encrypted with the public key can only be decrypted with the private key
+Messages encrypted with the private key can be decrypted with the public key
+
+#### AWS Certificate Manager ACM
+
+AWS Certificate Manager (ACM) helps you to provision, manage, and renew publicly trusted TLS certificates on AWS based websites.
+Create, store and renew SSL/TLS X.509 certificates
+Single domains, multiple domain names and wildcards
+Integrates with several AWS services including:
+
+- Elastic Load Balancing
+- Amazon Cloudfront
+- AWS Elastic Beanstalk
+- AWS Nitro Enclaves
+- AWS CloudFormation
+
+#### Symmetric Encryption
+
+The same key is used for both encryption and decryption - Data Encryption Key (DEK).
+
+#### AWS Key Management Service (KMS)
+
+AWS Key Management Service (AWS KMS) is an encryption and key management service scaled for the cloud. AWS KMS keys and functionality are used by other AWS services, and you can use them to protect data in your own applications that use AWS.
+
+Create and managed **symmetric** and **asymmetric** encryption keys.
+The Customer Master Keys (CMKs) are protected by Hardware Security Modules (HSMs)
+
+#### AWS CloudHSM
+
+AWS CloudHSM offers secure cryptographic key storage for customers by providing managed hardware security modules in the AWS Cloud.
+Generate and use your own encryption keys on the AWS Cloud
+Manage your own encryption keys using FIPS 140-2 Level 3 validated HSMs
+
+### Logging and Auditing
+
+#### Amazon CloudWatch Logs
+
+You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.
+CloudWatch Logs enables you to centralize the logs from all of your systems, applications, and AWS services that you use, in a single, highly scalable service.
+Unified Cloudwatch Agent installed on EC2 and on-premises servers.
+
+#### AWS CloudTrail
+
+AWS CloudTrail is an AWS service that helps you enable operational and risk auditing, governance, and compliance of your AWS account. Actions taken by a user, role, or an AWS service are recorded as events in CloudTrail. Events include actions taken in the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs.
+Trail can be within Region or all Regions.
+
+- **Event history** – The Event history provides a viewable, searchable, downloadable, and immutable record of the past 90 days of management events in an AWS Region.
+- **CloudTrail Lake** – AWS CloudTrail Lake is a managed data lake for capturing, storing, accessing, and analyzing user and API activity on AWS for audit and security purposes.
+- **Trails** - capture a record of AWS activities, delivering and storing these events in an Amazon S3 bucket, with optional delivery to CloudWatch Logs and Amazon EventBridge.
+
+#### VPC Flow Logs
+
+VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. Flow log data can be published to the following locations: Amazon CloudWatch Logs, Amazon S3, or Amazon Data Firehose.
+Flow logs can be created at the following levels:
+
+- VPC
+- Subnet
+- Network interface
+
+#### Access Logs
+
+- *Elastic Load Balancing* provides access logs that capture detailed information about requests sent to your load balancer. Each log contains information such as the time the request was received, the client's IP address, latencies, request paths, and server responses. You can use these access logs to analyze traffic patterns and troubleshoot issues.
+- *S3* Provides detailed records for the requests that are made to a bucket. Details include the requester, bucket name, request time, request action, response status and error code (if applicable).
+
+### Detect and Respond
+
+#### AWS Detective
+
+Amazon Detective makes it easy to analyze, investigate, and quickly identify the root cause of security findings or suspicious activities. Detective automatically collects log data from your AWS resources and uses machine learning, statistical analysis, and graph theory to help you visualize and conduct faster and more efficient security investigations.
+Data sources include VPC Flow Logs, CloudTrail and GuardDuty.
+
+#### AWS GuardDuty
+
+Amazon GuardDuty is a threat detection service that continuously monitors, analyzes, and processes AWS data sources and logs in your AWS environment.
+
+#### Amazon Macie
+
+Amazon Macie is a fully managed data security and data privacy service. Macie uses machine learning and pattern matching to help you discover, monitor, and protect your sensitive data in Amazon S3.
+Can identify a variaty of data types, including PII, Protected Health Information PHI, regulatory documents, API keys and Secret Keys.
+
+### Firewalls and DDoS Protection
+
+#### AWS Web Application Firewall (WAF)
+
+AWS WAF is a web application firewall that lets you monitor and manage web requests that are forwarded to protected AWS resources. With AWS WAF, you can protect resources such as Amazon CloudFront distributions, Amazon API Gateway REST APIs, Application Load Balancers, and AWS AppSync GraphQL APIs. You can use AWS WAF to inspect web requests for matches to conditions that you specify, such as the IP address that the requests originate from, the value of a specific request component, or the rate at which requests are being sent. AWS WAF can manage matching requests in a variety of ways, including counting them, blocking or allowing them, or sending challenges like CAPTCHA puzzles to the client user or browser.
+WAF makes it easy to create rules that block common webexploits like **SQL injection** and **cross-site scripting (XSS)**.
+
+#### AWS Shield
+
+AWS provides two levels of protection against **Distribuited Denial of Service DDoS** attacks: AWS Shield Standard and AWS Shield Advanced. AWS Shield Standard is automatically included at no extra cost beyond what you already pay for AWS WAF and your other AWS services. For added protection against **DDoS** attacks, AWS offers AWS Shield Advanced. AWS Shield Advanced provides expanded **DDoS** attack protection for your Amazon EC2 instances, Elastic Load Balancing load balancers, Amazon CloudFront distributions, and Amazon Route 53 hosted zones. Helps to minimize application downtime and latency.
+Safeguards web application running on AWS with always-on detection and automatic inline mitigations.
+
+### Network Firewall and DNS Firewall
+
+#### AWS Network Firewall
+
+AWS Network Firewall is a stateful, managed, network firewall and intrusion detection and prevention service for your virtual private cloud (VPC).
+Flexible *rules engine* provides fine-grained control over network traffic.
+
+#### Route 53 Resolver DNS Firewall
+
+Filter and regulate outbound DNS traffic for VPCs
+Helps to prevent DNS exfiltration of data
+Can use AWS Firewall Manager to centrally configure and manage DNS firewall
+
+### AWS Resource Access Manager (RAM)
+
+AWS Resource Access Manager (AWS RAM) helps you securely share your resources across AWS accounts, within your organization or organizational units (OUs), and with AWS Identity and Access Management (IAM) roles and users for supported resource types.
+
+### Compliance Services
+
+#### AWS Artifact
+
+AWS Artifact is a web service that enables you to download AWS security and compliance documents such as ISO certifications, Service Organization Control (SOC) reports and Payment Card Industry (PCI).
+
+### Security Management and Support
+
+#### AWS Security Hub
+
+AWS Security Hub provides you with a comprehensive view of the security state of your AWS resources. Security Hub collects security data from across AWS accounts and services, and helps you analyze your security trends to identify and prioritize the security issues across your AWS environment.
+
+#### AWS Security Bulletins
+
+Security and privacy events affecting AWS services are published (has a RSS feed).
+
+#### AWS Trust & Safety Team
+
+Contact the *AWS Trust & Safety* team if AWS resources are being used for:
+
+- Spam
+- Port scanning
+- Denial-of-service attacks
+- Intrusion attemps
+- Hosting of objectionable or copyrighted content
+
+### Penetration Testing
+
+Penetration Testing is the practice of testing one's own application's security for vulnerabilities by simulation an attack. [Docs](https://aws.amazon.com/security/penetration-testing/)
