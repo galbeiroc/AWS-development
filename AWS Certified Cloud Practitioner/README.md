@@ -1056,3 +1056,77 @@ Contact the *AWS Trust & Safety* team if AWS resources are being used for:
 ### Penetration Testing
 
 Penetration Testing is the practice of testing one's own application's security for vulnerabilities by simulation an attack. [Docs](https://aws.amazon.com/security/penetration-testing/)
+
+## Management and Governance
+
+### AWS Organizations
+
+With AWS Organizations, you can centrally manage your environment as you scale your AWS resources. With AWS Account Management you create and manage individual AWS accounts. You can group accounts into Organizational Units (OUs). Management account is the root.
+
+- Consolidated Billing - is about a single bill accross your account and is available in both consolidated billing feature set and all features.
+- All Features - gives you the additional features, such as Service Control Policies and tag policies.
+
+The list shows a high-level explanation of how you can use AWS Organizations:
+
+- Add accounts
+- Group accounts
+- Apply policies
+- Enable AWS services
+
+### AWS Control Tower
+
+AWS Control Tower offers a straightforward way to set up and govern an AWS multi-account environment, following prescriptive best practices. AWS Control Tower orchestrates the capabilities of several other AWS services, including AWS Organizations, AWS Service Catalog, and AWS IAM Identity Center, to build a landing zone in less than an hour. Resources are set up and managed on your behalf.
+
+Example: Disallowing public write access to S3 buckets
+Disallowing access as a root user without multifactor authentication.
+
+### AWS System Manager
+
+AWS Systems Manager helps you centrally view, manage, and operate nodes at scale in AWS, on-premises, and multicloud environments. With the launch of a unified console experience, Systems Manager consolidates various tools to help you complete common node tasks across AWS accounts and AWS Regions.
+
+Manage many AWS resources including Amazon EC2, Amazon S3, Amazon RDS etc.
+System Manager Components:
+
+- Automation - This automation, takes a snapshot of an RDS database instance.
+- Run Command - This can run command, eg. checks for missing updates
+- Inventory - All manage system manager report in information about themselves.
+- Patch Manager - Deploy operating system and software patches automatically across large groups of AWS resources.
+- Session Manager - Secure remote management of your instances at scale without logging into your servers.
+- Parameter Store - Provides secure, hierachical storage for configuration data management and secrets management.
+
+### AWS Service Catalog
+
+AWS Service Catalog enables IT administrators to create, manage, and distribute portfolios of approved products to end users, who can then access the products they need in a personalized portal. Typical products include servers, databases, websites, or applications that are deployed using AWS resources (for example, an Amazon EC2 instance or an Amazon RDS database).
+Enables users to quickly deploy only the approved IT services the need.
+This service can be used to provide an approved catalog of services and applications that users can launch.
+
+### AWS Config
+
+AWS Config provides a detailed view of the resources associated with your AWS account, including how they are configured, how they are related to one another, and how the configurations and their relationships have changed over time.
+
+### AWS Truested Advisor
+
+AWS Trusted Advisor provides real time guidance to help you provision your resources following best practice.
+
+AWS Trusted Advisor provides checks for *cost optimization*, *performance*, *security*, *fault tolerance*, service limits, operational excellence. Access via console, API, CLI. Support plans determine access levels.
+
+### AWS Personal Health API and Dashboard
+
+AWS personal health dashboard provides alerts and remediation guidance when AWS is experiencing events that may impact you.
+Personal Health Dashboard gives you a personalized view into the performance and availability of the AWS services underlying your  AWS resources.
+Service Health Dashboard is showing you the status of AWS resources right now - no personalized.
+
+### AWS Compute Optimizer
+
+AWS Compute Optimizer recommends optimal AWS compute resources for your workloads. It can help you reduce costs and improve performance, by using machine learning to analyze your historical utilization metrics. Compute Optimizer helps you choose the optimal resource configuration based on your utilization data.
+EC2, EBS, Lambda functions.
+
+### AWS Launch Wizard
+
+AWS Launch Wizard offers a guided way of sizing, configuring, and deploying AWS resources for third party applications.
+Focuses on the deployment of enterprise applications like SQL Server Always-On, SAP and Active Directory.
+
+Why choose AWS Launch Wizard?
+Simplified Deployments: Offers a straightforward solution to deploy complex applications, removing the traditional complexities involved.
+Resource Optimization: Ensure that you get best utilization of AWS resources tailored to your applications needs.
+Quick Start: Facilitates a quick start to application deployment
