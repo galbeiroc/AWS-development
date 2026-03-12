@@ -1130,3 +1130,91 @@ Why choose AWS Launch Wizard?
 Simplified Deployments: Offers a straightforward solution to deploy complex applications, removing the traditional complexities involved.
 Resource Optimization: Ensure that you get best utilization of AWS resources tailored to your applications needs.
 Quick Start: Facilitates a quick start to application deployment
+
+## Architecting for the Cloud
+
+Well architected is a series of resources, tools ans best practice guidance on how to build applications on AWS according to the best practice principles of architecture.
+
+### AWS Well Architected
+
+AWS Well-Architected helps cloud architects build secure, high-performing, resilient, and efficient infrastructure for a variety of applications and workloads. Built around six pillars:
+
+- Operational Excellence
+- Security
+- Reliability
+- Performance Efficiency
+- Cost Optimization
+- Sustainability
+
+#### Operational Excellence
+
+Operational excellence (OE) is a commitment to build software correctly while consistently delivering a great customer experience. The operational excellence pillar contains best practices for organizing your team, designing your workload, operating it at scale, and evolving it over time.
+
+The goal of operational excellence is to get new features and bug fixes into customers’ hands quickly and reliably. Best practices for operational excellence:
+
+- Perform operations as code (Cloudformation)
+- Make ferequent, small, reversible changes
+- Refine operations procedures frequently
+- Anticipate failure
+- Learn from all operational failures
+
+#### Security
+
+The security pillar describes how to take advantage of cloud technologies to protect data, systems, and assets in a way that can improve your security posture. The security pillar focuses on protecting information and systems. Key topics include confidentiality and integrity of data, managing user permissions. You can build architectures that protect your data and systems, control access, and respond automatically to security events. Best practice for security:
+
+- Implement a strong identity foundation
+- Enable traceability
+- Apply security at all layers
+- Automate security best practices
+- Protect data in transit and at rest
+- Keep people away from data
+- Prepare for security events
+
+#### Reliability
+
+The reliability pillar encompasses the ability of a workload to perform its intended function correctly and consistently when it’s expected to. This includes the ability to operate and test the workload through its total lifecycle. Best practice for reliability:
+
+- Automatically recover from failure
+- Test recovery procedures
+- Scale horizontally to increase aggregate workload availability
+- Stop guessing capacity
+- Manage change in automation
+
+#### Performance Efficiency
+
+The performance efficiency pillar includes the ability to use cloud resources efficiently to meet performance requirements, and to maintain that efficiency as demand changes and technologies evolve. Best practices for performance Efficiency:
+
+- Democratize advanced technologies
+- Go global in minutes
+- Use serveless architectures
+- Expirement more often
+- Consider mechanical sympathy
+
+#### Cost Optimization
+
+Cost optimization is a continual process of refinement and improvement over the span of a workload’s lifecycle. You build and operate cost-aware workloads that achieve business outcomes while minimizing costs and allowing your organization to maximize its return on investment. Best practice for cost optimization:
+
+- Implement Cloud Financial Management
+- Adopt a consumption model
+- Measure overall efficiency
+- Stop spending money on undifferentiated heavy lifting
+- Analizr and attribute expenditure
+
+#### Sustainability
+
+Enviromental sustainability is a shared responsibility between customers and AWS.
+
+- AWS is responsiblity for optimizing the sustainability of the cloud - delivering efficient, shared infrastructure, water stewardship, and sourcing renewable power.
+- Customers is responsiblity for optimizing the sustainability in the cloud - optimizing workloads and resources utilization, and minimizing the total resources required to be deployed for your workloads.
+
+### AWS Cloud Adoption Framework (CAF)
+
+Helps organizations understand how adopting cloud transforms the way they will function as business. Laverages AWS experience and best practices to help you digitally transform and accelerate your business outcomes through innovate use of AWS.
+AWS CAF groups its capabilities in six perspectives:
+
+- **Business** - helps ensure that your cloud investments accelerate your digital transformation ambitions and business outcomes.
+- **People** - serves as a bridge between technology and business, accelerating the cloud journey to help organizations more rapidly evole to a culture of continuous growth and learning.
+- **Governance** - helps you orchestrate your cloud initiatives while maximizing organizational benefits and minimizing transformation-related risks.
+- **Platform** - helps you build an enterprise-grade, scalable, hybrid cloud platform; modernize existing workloads; and implement new cloud native solutions.
+- **Security** - helps you achieve the confidentiality, integrity and availability of your data and cloud workloads.
+- **Operations** - helps ensure that your cloud services are delivered at a level that meets the needs of your business.
