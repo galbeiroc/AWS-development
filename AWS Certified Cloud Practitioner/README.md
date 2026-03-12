@@ -1218,3 +1218,171 @@ AWS CAF groups its capabilities in six perspectives:
 - **Platform** - helps you build an enterprise-grade, scalable, hybrid cloud platform; modernize existing workloads; and implement new cloud native solutions.
 - **Security** - helps you achieve the confidentiality, integrity and availability of your data and cloud workloads.
 - **Operations** - helps ensure that your cloud services are delivered at a level that meets the needs of your business.
+
+## Accounts, Billing and Support
+
+### AWS Princing Fundamentals
+
+- **Compute** - *Amount* of resources such as CPU and RAM, and *duration* of time.
+- **Storage** - Quantity of *data stored*. S3 physical data uploaded. EBS size of volume created.
+- **Outbound Data Transfer** - Quantity of data that is transferred out from all services.
+
+#### Pay as you go
+
+Easily adapt to changing business needs
+Improved responsiveness to change
+Adapt based on needs, not forecasts
+Reduce risk over overpositioning of mising capacity
+
+#### Save when you reserve
+
+Invest in reserved capacity (eg:. RDS and EC2)
+Save up to 75% compared to on-demand(pay-as-you-go)
+The more you pay upfront the greater the discount
+
+#### Pay less by using-more
+
+Pay less using volume-based discounts
+Tiered pricing means the more use the lower the unit pricing
+
+### Amazon EC2 Princing Options
+
+- **On-Demand** - Standard rate - no discount; no commitments; dev/tes, short-term, or unpredictable workloads
+- **Reserved** - 1 or 3 year commitments; up to 75% discount; steady-state, predictable workloads and reserved capacity
+- **Spot Instances** - Get discount of up to 90% for unused capacity. Can be terminated at any time
+- **Dedicated Instances** - Physical isolation at the host hardware level from instances belonging to other customers; pay per instance
+- **Dedicated Hosts** - Physical server dedicated for your use; Socket/core visibility, host affinity; pay per host; workloads with server-bound software licenses
+- **Savings Plans** - Commitment to a consistent amount of usage (EC2 + Fargate + Lambda); pay by $/hour; 1 or 3 year commiyment
+
+#### Amazon EC2 Billing
+
+Billed per second, minimun of 1 minute. Per-second billing is for Amazon Linux, Windows and Ubuntu in *On-demand*, *Reserved* and *Spot* Instances.
+
+#### Amazon EC2 Reserved Instances (RIs)
+
+Can pay all Upfront, Partial Upfront or No Upfront.
+*Standar RI* Change **AZ**, instance size (linux), networking type - use **ModifyReservedInstances** API
+*Convertible RI* Change **AZ**, instance size (linux), networking type and change **family**, **OS**, **Tenancy**, **Payment option** - use **ExchangeReservedInstances** API
+
+### Amazon EC2 Princing Use Cases
+
+- **$On-Demand** - Developer working on small project for several hours; *cannot be interrupted*
+- **$Reserved** - *Steady-state*, business critical, line-of-business application; continuous demand
+- **$Scheduled Reserved** - Reporting application, *runs for 6 hours a day, 4 days per week*
+- **$Spot Instances** - Compute-intensive, cost sensitive distributed computing; *can withstand interruption*. Deprecated
+- **$Dedicated Instances** - Security sensitive application, *requires dedicated hardware*; per-instance billing
+- **$Dedicated Hosts** - Database with *per-socket licensing*
+
+### Pricing for Other AWS Services
+
+#### Amazon S3 Pricing
+
+- **Storage Class** - Standard or Infrequently Access (IA) - Glacier
+- **Storage Quantity** - Data volume stored in your buckets on a per GB basis
+- **Number of Request** - The number and type of requests, eg. GET, PUT, POST, LIST, COPY
+- **Lifecycle Transition** - Moving data between storage classes
+- **Data Transfer** - Data tranferred out of an S3 region is charged
+- **Retrievals/Requests** - For some storage classes
+
+#### Amazon EBS Pricing
+
+- **Volumes** - Volume storage for all EBS volumes type is charged by the amount of GB provisioned per month
+- **Snapshots** - Based on the amount of space consumed by snapshot in S3. Copying snapshot is charged on the amount of data copied across regions
+- **Data Transfer** - Inbound data tranfer is free, outbound data transfer charges are tiered.
+
+#### Amazon RDS Pricing
+
+- **Clock hours of server uptime** - Amount of time the DB instance is running
+- **Database Characteristics** - E.g. Database engine, size and memory class
+- **Database purchase type** - E.g On-Demand, Reserved
+- **Number of database instances**
+- **Provisioned Storage** - Backup is included up to 100% of the size of the DB
+- **Addtional Storage** - The amount of storage in addition to the provisioned storage is charged per GB per month
+- **Requests** - The number of input and output request to the DB
+- **Deployment Type** - Single AZ or multi-AZ
+- **Reserved Instances** - RDS RIs can be purchased with no upfront, partial upfront or all upfront terms
+
+#### Amazon DynamoDB Pricing
+
+- Charged for reading, writing, and storing data
+- **On-demand Capacity Mode**
+  - Charged for reads and writes
+  - No need to specify how much capacity is required
+  - Good for unpredictable workloads
+- **Provisioned Capacity Mode**
+  - Specify number of reads and writes per second
+  - Can use Auto Scaling
+  - Good for Predictable workloads
+  - Consistent traffic or gradual changes
+
+#### Amazon CloudFront Pricing
+
+- **Traffic Distribution** - Data transfer and request pricing, varies across regions, and is based on the edge locations from which content is served
+- **Requests** - The number and type of requests (HTTP or HTTPs) and the geographic region in which they are made
+- **Data Transfer Out** - Quantity of data transferred out of CloudFront edge locations
+- There are additional chargeable items such as invalidation requests, field-level encryption requests, and custom SSL certificates.
+
+#### AWS Lambda Pricing
+
+- **Numbers of Requests**
+- **Duration of Request** - Rounded up to the nearest millisecond
+- Price is dependent on the amount of memory allocated to the function
+
+### AWS Pricing Calculator
+
+Estimate the cost for your architecture solution. Configure a cost estimate that fits your unique business or personal needs with AWS products and services.
+
+### AWS Support Plans
+
+The Support plans are designed to give you the right mix of tools and access to expertise so that you can be successful with AWS while optimizing performance, managing risk, and keeping costs under control.
+
+| Plan category | Plan details | Business Support+ | Enterprise Support | Unified Operations |
+| :--- | :--- | :--- | :--- | :--- |
+| Recommended for | Best for | Minimum recommended plan for production workloads by AWS. | Recommended plan for business-critical workloads across organizations looking for expert guidance. | Recommended plan for mission-critical workloads that require enhanced resilience and application-specific expertise. |
+| AI-powered troubleshooting | Unlimited 24/7 contextual recommendations | ✔️ | ✔️ | ✔️ |
+| Human response times* | Business/Mission-critical system down | < 30 mins | < 15 mins | < 5 mins from Incident Management Engineer **** |
+| Human response times* | Production system down | < 1 hour | < 1 hour | < 1 hour |
+| Human response times* | Production system impaired | < 4 hours | < 4 hours | < 4 hours |
+| Human response times* | System impaired | < 12 hours | < 12 hours | < 12 hours |
+| Human response times* | General guidance | < 24 hours | < 24 hours | < 24 hours |
+
+### Consilidated Billing
+
+#### - AWS Organizations
+
+- Consolidated billing has the following benefits:
+- One bill - You get one bill for multiple accounts
+  - *Easy tracking:* - You can track the charges across multiple accounts and download the combined cost and usage data
+  - *Combined usage:* - You can combine the usage across all accounts in the organization to share the volume pricing discounts and Reserved Instance discount
+  - *No extra fee:* - Consolidated billing is offered at no addtional cost
+
+### AWS Cost Allocation Tags
+
+AWS Cost Allocation Tags are the a way you can use tagging to add some metadata to our resources
+
+### AWS Cost Management Tools
+
+#### AWS Cost Explorer
+
+- The AWS Cost explorer is a free tool that allow you to view chart of our costs
+- You can view cost data for the past 13 months and forecast how much you likely to spend over tje next three months
+- Cost Explorer can be used to discover patterns in how much you spend on AWS resources over time and to identify cost problem areas
+- Cost Explorer can help you to identify service usage statistics such as:
+  - Which services you use the most
+  - View metrics for which AZ has the most traffic
+  - Which linked account is used the most
+
+#### AWS Cost & Usage Report
+
+- Publish AWS billing reports to an Amazon S3 bucket
+- Report break down costs by:
+  - Hour, day, month, product, product resource, tags
+- Can update the report up to three times a day
+- Create, retrieve and delete your reports using the AWS CUR API Reference
+
+#### AWS Price List API
+
+- Query the prices of AWS services
+- *Price List Service API* (AKA the Query API) - query with JSON
+- *AWS Price List API* (AKA the Bulk API) - query with html
+- Alerts via Amazon SNS when prices change
