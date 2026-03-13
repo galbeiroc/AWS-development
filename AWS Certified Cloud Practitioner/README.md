@@ -1386,3 +1386,163 @@ AWS Cost Allocation Tags are the a way you can use tagging to add some metadata 
 - *Price List Service API* (AKA the Query API) - query with JSON
 - *AWS Price List API* (AKA the Bulk API) - query with html
 - Alerts via Amazon SNS when prices change
+
+## Migration, Machine Learning and More
+
+### AWS Migration and Transfer
+
+#### AWS Migration Tools
+
+##### AWS Application Migration Service
+
+AWS Application Migration Service (MGN) is a highly automated lift-and-shift solution that simplifies and expedites migration to AWS. It allows companies to lift-and-shift a large number of physical, virtual, or cloud servers without compatibility issues, performance disruption, or long cutover windows. Application Migration Service replicates source servers into your AWS account. Straight across into EC2 instances in the cloud.
+
+##### AWS Database Migration Service
+
+AWS Database Migration Service (AWS DMS) is a web service you can use to migrate data from your database that is on-premises, on an Amazon Relational Database Service (Amazon RDS) DB instance, or in a database on an Amazon Elastic Compute Cloud (Amazon EC2) instance to a database on an AWS service.
+
+##### AWS DataSync
+
+AWS DataSync is an online data movement and discovery service that simplifies data migration and helps you quickly, easily, and securely transfer your file or object data to, from, and between AWS storage services.
+*NAS/File server*  -> AWS **DataSync** --> *S3 or EFS File System*
+
+##### AWS Migration Hub
+
+AWS Migration Hub (Migration Hub) provides a single location to track migration tasks across multiple AWS tools and partner solutions. With Migration Hub, you can choose the AWS and partner migration tools that best fit your needs while providing visibility into the status of your migration projects. Migration Hub also provides key metrics and progress information for individual applications, regardless of which tools are used to migrate them.
+
+##### AWS Snowball Family
+
+- **AWS Snowball and Snowmobile** are used for migrating large volumes of data. Physical snowball device
+- **Snowball Edge Compute Optimized**
+  - Provides block and object storage and optional GPU
+  - Use for data collection, machine learning and processing, and storage in environments with intermitent connectivity (edge use cases)
+- Snowball Edge Storage Optimized
+  - Provides block storage and Amazon S3-compatible object storage
+  - Use for local storage and large-scale data transfer
+- Snowcone
+  - Small device used for edge computing, storage and data transfer
+  - Can transfer data offline or inline with AWS DataSync agent
+
+### AWS Machine Learning and AI Services
+
+#### AWS Rekognition
+
+Amazon Rekognition makes it easy to add image and video analysis to your applications. You just provide an image or video to the Amazon Rekognition API, and the service can identify objects, people, text, scenes, and activities. It can detect any inappropriate content as well. Amazon Rekognition also provides highly accurate facial analysis and facial recognition.
+Process video stored in an Amazon S3 bucket
+Publish completion status to Amazon SNS Topic
+
+#### Amazon Transcribe
+
+Amazon Transcribe provides transcription services for your audio files and audio streams. It uses advanced machine learning technologies to recognize spoken words and transcribe them into text.
+
+#### Amazon Translate
+
+Amazon Translate is a neural machine translation service for translating text to and from English across a breadth of supported languages. Powered by deep-learning technologies, Amazon Translate delivers fast, high-quality, and affordable language translation. It provides a managed, continually trained solution so you can easily translate company and user-authored content or build applications that require support across multiple languages.
+
+#### Amazon Comprehend
+
+Amazon Comprehend uses natural language processing (NLP) to extract insights about the content of documents without the need of any special preprocessing. Amazon Comprehend processes any text files in UTF-8 format. It develops insights by recognizing the entities, key phrases, language, sentiments, and other common elements in a document. Use Amazon Comprehend to create new products based on understanding the structure of documents. With Amazon Comprehend you can search social networking feeds for mentions of products, scan an entire document repository for key phrases, or determine the topics contained in a set of documents.
+
+#### Amazon Lex
+
+Conversational AI for chatbots
+Build conversational interfaces into any application using voice and text
+Build bots to increase contact center productivity, automaye simple tasks, and drive operational efficiencies across the enterprise
+
+#### Amazon DevOps Guru
+
+Cloud operations service for improving application operational performance and availability
+Detect behaviors that deviate from normal operating patterns
+Benefits:
+
+- Automatically detect operational
+- Resolve issue with ML-powered insights
+
+#### Amazon CodeGuru Security
+
+Detect, track, and fix code security vulnerabilities anywhere in the development cycle using ML and automated reasoning.
+Integrates with IDEs and CI/CD tools
+Automated bug tracking
+Offers performance optimization recommendations
+
+### End User Computing
+
+#### Amazon Workspaces
+
+Managed Destop-as-a-Service (DaaS)
+Provision either Windows or Linux desktops
+Simplifies delivery of desktops compared to traditional virtual desktop infrastructure (VDI) deployments
+
+#### Amazon AppStream 2.0
+
+Fully managed non-persistent application streaming service
+Alternative to popular products such as as Citrix XenApp
+
+#### AWS WorkLink
+
+Provides secure, one-click access to your internal websites and web apps using mobile phone browser
+Does not provide VPN client or App
+
+#### AWS WorDocs
+
+Fully managed, secure content creation, storage, and collaboration service. Similar to Google Apps
+
+### AWS IoT Core
+
+AWS IoT Core provides secure, bi-directional communication for Internet-connected devices (such as sensors, actuators, embedded devices, wireless devices, and smart appliances) to connect to the AWS Cloud over MQTT, HTTPS, and LoRaWAN.
+Use cases include:
+
+- Smart home automation
+- Smart healthcare
+- Manufacturing
+- Agriculture
+
+### AWS Device Farm
+
+AWS Device Farm is an app testing service that enables you to test your iOS, Android and Fire OS apps on real, physical phones and tablets that are hosted by AWS. The service allows you to upload your own tests or use built-in, script-free compatibility tests.
+
+### AWS Knowledge Center
+
+Here are some of the most frequent questions and requests that we receive from customers.
+
+### Amazon Connect
+
+Amazon Connect is a contact center as a service (CCaaS) solution that offers easy, self-service configuration and enables dynamic, personal, and natural customer engagement at any scale.
+
+- Cloud contact center
+- Facilitates human agents in helping customers
+
+### AWS Amplify
+
+Use AWS Amplify to develop and deploy cloud-powered mobile and web applications. Amplify provides frontend libraries, UI components, and backend building for fullstack applications on AWS. Amplify Hosting provides a continuous delivery and hosting service for fullstack cloud applications.
+
+- Build web and mobile backends, and web frontend UIs
+- AWS Amplify studio is a visual interface for building web and mobile apps:
+  - Use the visual interface to define data model, user authentication, and file storage with backend expertise
+  - Easily add AWS services not available within Amplify Studio using the AWS Cloud Development Kit (CDK)
+  - Connect mobile and web apps using Amplify Libraries for iOS, Android, Flutter, React Native, and web apps
+- AWS Amplify Hosting is a fully managed CI/CD and hosting service for fast, secure, and reliable static and server-side-rendered apps
+
+### AWS AppSync
+
+AWS AppSync is a fully managed service that makes it easy to develop GraphQL APIs
+AWS AppSync is an enterprise-level, fully managed API management service that connects applications to events, data, and AI models.
+Applications can securely access, manipulate, and receive real-time updates from multiple data sources such as databases or APIs.
+
+### Customer Enablement Services
+
+#### AWS IQ
+
+AWS IQ is a platform to help customers find, securely collaborate with, and pay AWS-Certfied third party experts for on-demand project work.
+AWS IQ is marketplace where AWS customers can find and hire AWS-Certified consultants and experts to help with the deployment, optimization, and management of AWS applications and services.
+
+#### AWS Managed Services (AMS)
+
+AMS takes over the daily operations of AWS infrastructure, handling tasks such as patch management, backup, and incident monitoring.
+Speeds up the migration process to AWS, assisting business in quickly reaping the benefits of the cloud.
+Helps in managing and reducing operational costs through optimized AWS resource management
+
+#### AWS Activate for Startups
+
+Empowers startups with tools and resources to help bring ideas to market
+A program designed specifically for startups, providing them with AWS Credits, training, technical support, and other resources
